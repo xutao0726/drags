@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+  <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/plugins/material-datepicker/css/bootstrap-material-datetimepicker.min.css">
+  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+  <link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet"/>
+  <link href="../assets/plugins/inputtags/css/bootstrap-tagsinput.css" rel="stylesheet" />
+  <link href="../assets/plugins/jquery-multi-select/multi-select.css" rel="stylesheet" type="text/css">
+  <link href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+  <link href="../assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css">
+  <link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <link href="../assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <link href="../assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <link href="../assets/css/app-style.css" rel="stylesheet"/>
+
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src="../assets/plugins/simplebar/js/simplebar.js"></script>
+  <script src="../assets/js/waves.js"></script>
+  <script src="../assets/js/sidebar-menu.js"></script>
+  <script src="../assets/js/app-script.js"></script>
+  <script src="../assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js"></script>
+  <script src="../assets/plugins/bootstrap-touchspin/js/bootstrap-touchspin-script.js"></script>
+  <script src="../assets/plugins/select2/js/select2.min.js"></script>
+  <script src="../assets/plugins/inputtags/js/bootstrap-tagsinput.js"></script>
+  <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script src="../js/drags.js"></script>
+
+
+  <style type="text/css">
+    .movebox{
+      min-height: 200px;
+    }
+    .oCard{
+      border:0.5px solid #ddd;
+      min-height: 200px;
+    }
+    .setspace{
+      width: 50px;
+      height: 20px;
+      margin: 0 auto;
+      text-align: center;
+      background: transparent url("../img/sprite_moduleBuilder.png") no-repeat -56px -292px;
+    }
+    .hidecheck{
+      min-width: 80px;
+      height: 20px;
+      margin: 0 auto;
+      text-align: center;
+      z-index: 11;
+      cursor: default;
+      box-shadow: 0px 12.5px 25px 0px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      left: 655px;
+      top: 30px;
+      background-color: #fff;
+      height: 42px;
+      width: 180px;
+      line-height: 42px;
+    }
+    .hidecheck:before{
+      content:'▲';
+      position: absolute;
+      top: -26px;
+      color: #fff;
+      font-size: 16px;
+      left: 78px;
+    }
+  </style>
+</head>
+<body>
+<!--复制节点-->
+<div class="row col-lg-12 copydom" style="display: none">
+  <!--1-->
+  <div class="col-lg-12 username">
+    <div class="col-lg-12" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)" >
+      <div class="card">
+        <div class="card-header text-uppercase">用户名</div>
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="some text"/>
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user-o"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--2-->
+  <div class="col-lg-12 email">
+    <div class="col-lg-12" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)" >
+      <div class="card">
+        <div class="card-header text-uppercase">邮箱</div>
+        <div class="card-body">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="some text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--3-->
+  <div class="col-lg-12 selecto">
+    <div class="col-lg-12" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
+      <div class="card">
+        <div class="card-header text-uppercase">单选</div>
+        <div class="card-body">
+          <div class="form-group">
+            <!--<label>Single select2</label>-->
+            <select class="form-control single-select">
+              <option>India</option>
+              <option>England</option>
+              <option>America</option>
+              <option>China</option>
+              <option>Australiya</option>
+              <option>Newzeland</option>
+              <option>Dubai</option>
+              <option>United Kingdom</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--4-->
+  <div class="col-lg-12 selectm">
+    <div class="col-lg-12" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
+      <div class="card">
+        <div class="card-header text-uppercase">多选</div>
+        <div class="card-body">
+          <div class="form-group">
+            <!--<label>Multiple select boxes</label>-->
+            <select class="form-control multiple-select" multiple="multiple">
+              <option>India</option>
+              <option>England</option>
+              <option>America</option>
+              <option>China</option>
+              <option>Australiya</option>
+              <option>Newzeland</option>
+              <option>Dubai</option>
+              <option>United Kingdom</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--栏位-->
+  <div class="col-lg-12 oSpace">
+    <div  class="col-lg-12 oCard"  ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)">
+      <div class="col-lg-12 showD" >
+        <div class="col-lg-4 setspace"></div>
+        <div class="col-lg-4 hidecheck" style="display: none;">
+          <span onclick="setOne(this)">单列</span>
+          <span onclick="setTwo(this)">双列</span>
+          <span onclick="deleteThis(this)">删除</span>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-6 movebox">
+
+        </div>
+        <div class="col-lg-6 movebox">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row col-lg-12">
+  <div class="col-lg-2">
+    <div id="accordion1">
+      <div class="card mb-2 ">
+        <div class="card-header">
+          <button class="btn btn-link shadow-none" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+            字段
+          </button>
+        </div>
+
+        <div id="collapse-1" class="collapse show" data-parent="#accordion1">
+          <div class="card-body">
+            <button type="button" class="btn btn-light btn-square waves-effect waves-light m-1 carddrap" draggable="true" id="username">用户名</button>
+            <button type="button" class="btn btn-light btn-square waves-effect waves-light m-1 carddrap" draggable="true" id="email">邮箱</button>
+            <button type="button" class="btn btn-light btn-square waves-effect waves-light m-1 carddrap" draggable="true" id="selecto">单选</button>
+            <button type="button" class="btn btn-light btn-square waves-effect waves-light m-1 carddrap" draggable="true" id="selectm">多选</button>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-2 ">
+        <div class="card-header">
+          <button class="btn btn-link  shadow-none collapsed" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+            栏位
+          </button>
+        </div>
+        <div id="collapse-2" class="collapse" data-parent="#accordion1">
+          <div class="card-body">
+            <button type="button" class="btn btn-light btn-square waves-effect waves-light m-1" onclick="addSpace()">新增栏位</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-lg-10" id="allSpace">
+    <div  class="col-lg-12 oCard">
+      <div class="col-lg-12 showD" >
+        <div class="col-lg-4 setspace"></div>
+        <div class="col-lg-4 hidecheck" style="display: none;">
+          <span onclick="setOne(this)">单列</span>
+          <span onclick="setTwo(this)">双列</span>
+          <span onclick="deleteThis(this)">删除</span>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-6 movebox" >
+
+        </div>
+        <div class="col-lg-6 movebox" >
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<script>
+    $(function(){
+        //开始拖动
+        $(".carddrap").on("dragstart",function(e){
+            // console.log("SET -> addBuffer",e.target.id);
+            e.originalEvent.dataTransfer.setData("addBuffer",e.target.id);
+            e.originalEvent.dataTransfer.effectAllowed = 'all';
+            e.originalEvent.dataTransfer.dropEffect = 'all';
+            e.originalEvent.dataTransfer.setDragImage(this,0,0);
+            $("#"+e.target.id).addClass("moveStyle");
+
+        });
+        $(".movebox").on("dragover",function(e){
+            e.originalEvent.preventDefault();
+        })
+        //放下事件
+        $("#allSpace").on("drop",".movebox",function(e){
+            var id = e.originalEvent.dataTransfer.getData("addBuffer");
+            if (id == "ospace"){
+                $("#allSpace").append($("."+id).html());
+            }else{
+                $(this).append($("."+id).html());
+            }
+            if (id == "selectm"){
+                $(this).find('.multiple-select').select2();
+            }
+        })
+    })
+
+
+</script>
+</html>
