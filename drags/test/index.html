@@ -285,6 +285,28 @@
             <input type="text" id="range_01" value="" name="range" />
           </div>
           <div class="form-group">
+            <div class="form-group">
+              <label>数据库类型</label>
+              <select class="form-control single-select">
+                <option>INTEGER</option>
+                <option>INT8</option>
+                <option>TEXT</option>
+                <option>BIGSERIAL</option>
+                <option>BIT</option>
+                <option>BOOLEAN</option>
+                <option>BYTEA</option>
+                <option>CHAR</option>
+                <option>CHARACTER</option>
+                <option>DATE</option>
+                <option>DATETIME </option>
+                <option>DECIMAL</option>
+                <option>NUMERIC</option>
+                <option>FLOAT</option>
+                <option>REAL</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
             <div class="icheck-material-info">
               <input type="checkbox" id="user-checkbox1" checked="">
               <label for="user-checkbox1">不能为空</label>
@@ -382,7 +404,7 @@ function username(e) {
 function test(e) {
     $("#formemodal").modal('toggle');
     $(userObj).html($("#formemodal").find(".nametitle").val());
-    alert($("#range_01").val()+":::"+$("#user-checkbox1").is(':checked'));
+    alert($("#range_01").val()+":::"+$("#user-checkbox1").is(':checked')+":::"+$("#dbtype").val());
 
 }
 var userObj = null;
