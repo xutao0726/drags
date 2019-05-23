@@ -4,9 +4,9 @@ $(function () {
 
 
             $("#range_02").ionRangeSlider({
-                min: 100,
+                min: 1,
                 max: 1000,
-                from: 550
+                from: 1
             });
 
               $("#range_03").ionRangeSlider({
