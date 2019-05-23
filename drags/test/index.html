@@ -20,7 +20,8 @@
   <link href="../assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <link href="../assets/css/sidebar-menu.css" rel="stylesheet"/>
   <link href="../assets/css/app-style.css" rel="stylesheet"/>
-
+  <link href="../assets/plugins/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css"/>
+  <link href="../assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinNice.css" rel="stylesheet" type="text/css"/>
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/popper.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
@@ -33,6 +34,8 @@
   <script src="../assets/plugins/select2/js/select2.min.js"></script>
   <script src="../assets/plugins/inputtags/js/bootstrap-tagsinput.js"></script>
   <script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script src="../assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+  <script src="../assets/plugins/ion-rangeslider/js/range-slider-script.js"></script>
   <script src="../js/drags.js"></script>
 
 
@@ -75,6 +78,22 @@
       font-size: 16px;
       left: 78px;
     }
+    .showmodel{
+      min-width: 80px;
+      height: 20px;
+      margin: 0 auto;
+      text-align: center;
+      z-index: 11;
+      cursor: default;
+      box-shadow: 0px 12.5px 25px 0px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      left: 20px;
+      bottom: 50px;
+      background-color: #ff0;
+      height: 42px;
+      width: 180px;
+      line-height: 42px;
+    }
   </style>
 </head>
 <body>
@@ -84,12 +103,13 @@
   <div class="col-lg-12 username">
     <div class="col-lg-12" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)" >
       <div class="card">
-        <div class="card-header text-uppercase">用户名</div>
+        <div class="card-header text-uppercase" onclick="modelShow(this)">用户名</div>
         <div class="card-body">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="some text"/>
+            <input type="text" class="form-control" placeholder="" readonly  onblur="username(this)"/>
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user-o"></i></span>
+              <!--<span class="input-group-text"><i class="fa fa-cogs"></i></span>-->
             </div>
           </div>
         </div>
@@ -100,13 +120,13 @@
   <div class="col-lg-12 email">
     <div class="col-lg-12" ondrop="drop(event,this)" ondragover="allowDrop(event)" draggable="true" ondragstart="drag(event, this)" >
       <div class="card">
-        <div class="card-header text-uppercase">邮箱</div>
+        <div class="card-header text-uppercase" onclick="modelShow(this)">邮箱</div>
         <div class="card-body">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="some text">
+            <input type="text" readonly class="form-control" placeholder="some text" onblur="username(this)">
           </div>
         </div>
       </div>
@@ -120,7 +140,7 @@
         <div class="card-body">
           <div class="form-group">
             <!--<label>Single select2</label>-->
-            <select class="form-control single-select">
+            <select readonly class="form-control single-select">
               <option>India</option>
               <option>England</option>
               <option>America</option>
@@ -143,7 +163,7 @@
         <div class="card-body">
           <div class="form-group">
             <!--<label>Multiple select boxes</label>-->
-            <select class="form-control multiple-select" multiple="multiple">
+            <select readonly class="form-control multiple-select" multiple="multiple">
               <option>India</option>
               <option>England</option>
               <option>America</option>
@@ -181,6 +201,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="row col-lg-12">
   <div class="col-lg-2">
@@ -238,6 +259,53 @@
     </div>
   </div>
 </div>
+
+<!--
+--------------------------------------弹窗编辑--------------------------------------
+-->
+<!--弹窗开始-->
+<div class="col-lg-4">
+  <!-- Modal -->
+  <div class="modal fade" id="formemodal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">编辑</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="input-3">字段标题</label>
+            <input type="text" class="form-control nametitle" id="input-3" placeholder="字段标题">
+          </div>
+          <div class="form-group">
+            <label>字符长度</label>
+            <input type="text" id="range_01" value="" name="range" />
+          </div>
+          <div class="form-group">
+            <div class="icheck-material-info">
+              <input type="checkbox" id="user-checkbox1" checked="">
+              <label for="user-checkbox1">不能为空</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-info shadow-info px-5" onclick="test(this)"><i class="icon-lock"></i> 保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--弹窗结束-->
+
+
+
+
+
+
 
 </body>
 
@@ -307,6 +375,21 @@ function setTwo(e) {
 }
 function deleteThis(e) {
     $(e).parents(".oCard").remove();
+}
+function username(e) {
+    alert(e);
+}
+function test(e) {
+    $("#formemodal").modal('toggle');
+    $(userObj).html($("#formemodal").find(".nametitle").val());
+    alert($("#range_01").val()+":::"+$("#user-checkbox1").is(':checked'));
+
+}
+var userObj = null;
+function modelShow(e) {
+    userObj = e;
+    $("#formemodal").find(".nametitle").val($(userObj).html());
+    $('#formemodal').modal('show');
 }
 </script>
 </html>
